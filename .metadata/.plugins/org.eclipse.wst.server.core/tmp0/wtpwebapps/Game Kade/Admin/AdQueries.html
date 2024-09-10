@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Restaurant Reservation List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .search-container {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            width: 400px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .search-container button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .search-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .results-container {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 80%;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+
+        header {
+         
+            background:transparent;
+           
+            border-radius: 8px;
+            font-size: 2em;
+            padding: 30px 0;
+            text-align: center;
+           
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        /* Navigation bar styles */
+        nav {
+
+            background-color: #007bff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-right: 800px;
+            padding-left: 800px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ddd;
+        }
+
+        .query-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 30px;
+            margin-bottom: 10px;
+        }
+        .query-header {
+            display: flex;
+            justify-content: space-between;
+        }
+        .reply {
+            margin-top: 10px;
+        }
+        .solved {
+            color: green;
+            font-weight: bold;
+        }
+        .unsolved {
+            color: red;
+            font-weight: bold;
+        }
+        .btn {
+            margin-top: 10px;
+        }
+        .reply-input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        .CusQh1{
+            border: 2px solid #000000;
+            padding-left: 400px;
+            padding-right: 400px;
+            padding-top:15px;
+            padding-bottom: 15px;
+            margin-bottom: 90px;
+        }
+
+        /* Responsive menu */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ගමේ කඩේ</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="AdHome.html">Home</a></li>
+            <li><a href="AdRes.html">Reservations</a></li>
+            <li><a href="AdEmpMan.html">EmpManagement</a></li>
+            <li><a href="AdCusManage.html">CusManagement</a></li>
+            <li><a href="AdQueries.html">Queries</a></li>
+        </ul>
+    </nav>
+
+    <h1 class="CusQh1">Customer Queries</h1>
+
+    <div id="queries">
+        <!-- Sample Query -->
+
+        <div class="query-card" data-id="1">
+            <div class="query-header">
+                <div>
+                    <strong>Customer Name:</strong> John Doe<br>
+                    <strong>Query:</strong> How do I reset my password?
+                </div>
+                <div class="status unsolved">Unsolved</div>
+            </div>
+            <div class="reply">
+                <textarea class="reply-input" placeholder="Type your reply here..."></textarea>
+                <button class="btn" onclick="replyToQuery(this)">Reply</button>
+                <button class="btn" onclick="markAsSolved(this)">Mark as Solved</button>
+            </div>
+        </div>
+
+        <div class="query-card" data-id="2">
+            <div class="query-header">
+                <div>
+                    <strong>Customer Name:</strong> John Doe<br>
+                    <strong>Query:</strong> How do I reset my password?
+                </div>
+                <div class="status unsolved">Unsolved</div>
+            </div>
+            <div class="reply">
+                <textarea class="reply-input" placeholder="Type your reply here..."></textarea>
+                <button class="btn" onclick="replyToQuery(this)">Reply</button>
+                <button class="btn" onclick="markAsSolved(this)">Mark as Solved</button>
+            </div>
+        </div>
+
+        <!-- More queries can be added here in the same format -->
+    </div>
+
+    <script>
+        function replyToQuery(button) {
+            const queryCard = button.closest('.query-card');
+            const replyInput = queryCard.querySelector('.reply-input');
+            const replyText = replyInput.value.trim();
+
+            if (replyText === "") {
+                alert("Please enter a reply before submitting.");
+                return;
+            }
+
+            alert("Reply sent: " + replyText);
+
+            // Clear the reply input field
+            replyInput.value = "";
+        }
+
+        function markAsSolved(button) {
+            const queryCard = button.closest('.query-card');
+            const statusElement = queryCard.querySelector('.status');
+
+            statusElement.textContent = "Solved";
+            statusElement.classList.remove('unsolved');
+            statusElement.classList.add('solved');
+
+            // Disable the buttons after marking as solved
+            queryCard.querySelectorAll('button').forEach(btn => btn.disabled = true);
+        }
+    </script>
+
+
+</body>
+</html>

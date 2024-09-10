@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Game Kade</title>
+
+<link rel="stylesheet" href="css/style.css">
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        min-height: 100vh;
+        background: url('images/services.jpg');
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+    }
+
+    h1 {
+    margin-bottom: 40px;
+    color: #e0c1c1;
+}
+    
+.menu-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .menu-item {
+            
+            background:transparent;
+            backdrop-filter: blur(20px);
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, .5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+           
+            margin: 15px;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+           
+        }
+
+        .menu-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .menu-item h3 {
+            margin: 10px 0;
+            color: #f5f1f1;
+        }
+
+        .menu-item p {
+            color: #e4d8d8;
+        }
+
+        .menu-item button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item button:hover {
+            background-color: #218838;
+        }
+
+        #cart {
+            background:transparent;
+            backdrop-filter: blur(20px);
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, .5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            margin-top: 20px;
+            padding: 20px;
+           
+        }
+
+        #cart h2 {
+            color: #e4dddd;
+        }
+
+        #cart-items {
+            margin-top: 15px;
+        }
+
+        #cart-items li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #faeeee;
+        }
+
+        #cart-items li span {
+            color: #e4d4d4;
+        }
+
+        #cart-total {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        #checkout {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        #checkout:hover {
+            background-color: #0056b3;
+        }
+
+
+    </style>
+</head>
+
+
+<body>
+
+  <header> 
+    <img src="images/gamekadelogo.png" class="logoImage">
+      <nav class="navigation">
+        <a href="login.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="services.html">Services</a>
+        <a href="reservation.html">Reservations</a>
+        <a href="contact.html">Contact</a>
+        <a href="profile.html">profile <ion-icon name="person-circle" class="personI"></ion-icon></a>
+        
+      
+      </nav>
+  </header>
+
+  <h1>Week Specials Deals</h1>
+
+  <div class="menu-container">
+      <div class="menu-item">
+          <img src="images/pizza.jpg" alt="Pizza">
+          <h3>Pizza</h3>
+          <p>Delicious cheese pizza with fresh ingredients.</p>
+          <button onclick="addToCart('Pizza', 2000)">Starting from - Rs. 2000</button>
+      </div>
+      <div class="menu-item">
+          <img src="images/KootuCurry.jpg" alt="Burger">
+          <h3>Rice</h3>
+          <p>Sri lankan type Delicious Spicy Rice and Curry.</p>
+          <button onclick="addToCart('Kottu', 2000)">Starting from - Rs. 2000</button>
+      </div>
+      <div class="menu-item">
+          <img src="images/pexels-chanwalrus-958545.jpg" alt="Pasta">
+          <h3>Parata</h3>
+          <p>Sri Lankan Parata roti with chicken curry.</p>
+          <button onclick="addToCart('Parata', 2000)">Starting from - Rs. 2000</button>
+      </div>
+      <div class="menu-item">
+          <img src="images/Medu-Vada-H3.jpg" alt="Salad">
+          <h3>Wade</h3>
+          <p>Spicy and delicious Uludu Wade with chilli paste</p>
+          <button onclick="addToCart('Wade', 2000)">Starting from - Rs. 2000</button>
+      </div>
+  </div>
+
+  <div id="cart">
+      <h2>Your Cart</h2>
+      <ul id="cart-items"></ul>
+      <p id="cart-total">Total: Rs. 0.00</p>
+      <button id="checkout" onclick="checkout()">Checkout</button>
+  </div>
+
+  <script>
+      const cart = [];
+
+      function addToCart(itemName, itemPrice) {
+          cart.push({ name: itemName, price: itemPrice });
+          updateCart();
+      }
+
+      function updateCart() {
+          const cartItems = document.getElementById('cart-items');
+          const cartTotal = document.getElementById('cart-total');
+
+          cartItems.innerHTML = '';
+          let total = 0;
+
+          cart.forEach((item, index) => {
+              const listItem = document.createElement('li');
+              listItem.innerHTML = `<span>${item.name} - $${item.price.toFixed(2)}</span>
+                                    <button onclick="removeFromCart(${index})">Remove</button>`;
+              cartItems.appendChild(listItem);
+              total += item.price;
+          });
+
+          cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+      }
+
+      function removeFromCart(index) {
+          cart.splice(index, 1);
+          updateCart();
+      }
+
+      function checkout() {
+          if (cart.length === 0) {
+              alert("Your cart is empty. Please add some items before checking out.");
+              return;
+          }
+
+          let summary = "Your order:\n";
+          let total = 0;
+          cart.forEach(item => {
+              summary += `${item.name} - $${item.price.toFixed(2)}\n`;
+              total += item.price;
+          });
+          summary += `\nTotal: $${total.toFixed(2)}`;
+
+          alert(summary);
+          cart.length = 0;
+          updateCart();
+      }
+  </script>
+ 
+
+
+
+
+<script src="js/script.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+
+</body>
+</html>
+

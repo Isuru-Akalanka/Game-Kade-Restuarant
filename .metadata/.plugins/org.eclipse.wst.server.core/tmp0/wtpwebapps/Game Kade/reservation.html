@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Game Kade</title>
+
+<link rel="stylesheet" href="css/style.css">
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        min-height: 100vh;
+        background: url('images/menu.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    
+
+.reservation-form-container {
+    margin-top: 100px;
+    background:transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+	border-radius: 20px;
+	backdrop-filter: blur(20px);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #eee5e5;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #f8dcdc;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background: transparent;
+    color: #ddd;
+    font-weight: 500;
+}
+
+textarea {
+    resize: none;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #ff6347;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #e5533d;
+}
+
+.reservation-form-container  .Rescheck_button{
+    position: relative;
+    margin-left: 300px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: white;
+    background-color: rgb(71, 71, 206);
+    cursor: pointer;
+}
+    .error {
+                color: red;
+                font-size: 0.9em;
+                
+                padding-bottom: 5px;
+            }
+    
+    </style>
+</head>
+
+
+<body>
+
+  <header> 
+    <img src="images/gamekadelogo.png" class="logoImage">
+      <nav class="navigation">
+        <a href="login.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="services.html">Services</a>
+        <a href="reservation.html">Reservations</a>
+        <a href="contact.html">Contact</a>
+        <a href="profile.html">profile <ion-icon name="person-circle" class="personI"></ion-icon></a>
+        
+      
+      </nav>
+  </header>
+
+  <div class="reservation-form-container">
+    <h1>Restaurant Reservation</h1>
+        <button type="submit" class="Rescheck_button" onclick="goToReservations()">Check availability</button>
+    <form action="/submit-reservation" method="post">
+        <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" >
+            <label id="nameError" class="error"></label>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" >
+            <label id="emailError" class="error"></label>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" >
+            <label id="phoneError" class="error"></label>
+        </div>
+        <div class="form-group">
+            <label for="date">Reservation Date:</label>
+            <input type="date" id="date" name="date" >
+            <label id="dateError" class="error"></label>
+        </div>
+        <div class="form-group">
+            <label for="time">Reservation Time:</label>
+            <input type="time" id="time" name="time" >
+            <label id="timeError" class="error"></label>
+        </div>
+        <div class="form-group">
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" name="guests" min="1" max="20" required>
+            <label id="guestsError" class="error"></label>
+        </div>
+        <div class="form-group">
+            <label for="requests">Special Requests:</label>
+            <textarea id="requests" name="requests" rows="4"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" onclick="validateForm()">Reserve Now</button>
+    </form>
+</div>
+
+<script>
+    function goToReservations() {
+        window.location.href = 'ReservCheck.html'; // Replace with your actual page
+    }
+
+    function validateForm() {
+            // Clear previous error messages
+            document.getElementById('nameError').innerText = '';
+            document.getElementById('emailError').innerText = '';
+            document.getElementById('phoneError').innerText = '';
+            document.getElementById('dateError').innerText = '';
+            document.getElementById('timeError').innerText = '';
+            document.getElementById('guestsError').innerText = '';
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const guests = document.getElementById('guests').value.trim();
+
+            let isValid = true;
+
+            // Name validation (required)
+            if (name === '') {
+                document.getElementById('nameError').innerText = 'Name is required.';
+                isValid = false;
+            }
+
+            // Email validation (required and valid format)
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === '') {
+                document.getElementById('emailError').innerText = 'Email is required.';
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById('emailError').innerText = 'Please enter a valid email address.';
+                isValid = false;
+            }
+
+            // Phone number validation (required and valid pattern)
+            const phonePattern = /^[0-9]{10}$/; // Adjust the pattern to your needs
+            if (phone === '') {
+                document.getElementById('phoneError').innerText = 'Phone number is required.';
+                isValid = false;
+            } else if (!phonePattern.test(phone)) {
+                document.getElementById('phoneError').innerText = 'Please enter a valid 10-digit phone number.';
+                isValid = false;
+            }
+
+            // Date validation (required and must be in the future)
+            const today = new Date().toISOString().split('T')[0];
+            if (date === '') {
+                document.getElementById('dateError').innerText = 'Date is required.';
+                isValid = false;
+            } else if (date < today) {
+                document.getElementById('dateError').innerText = 'Please select a future date.';
+                isValid = false;
+            }
+
+            // Time validation (required)
+            if (time === '') {
+                document.getElementById('timeError').innerText = 'Time is required.';
+                isValid = false;
+            }
+
+            // Number of guests validation (required and must be greater than 0)
+            if (guests === '' || guests <= 0) {
+                document.getElementById('guestsError').innerText = 'Please enter a valid number of guests.';
+                isValid = false;
+            }
+
+            // If form is valid, submit the form or display a success message
+            if (isValid) {
+                alert('Reservation is valid! Form can be submitted.');
+                // Here you can add code to submit the form or do further actions.
+            }
+            
+        }
+</script>
+
+
+
+
+<script src="js/script.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
+

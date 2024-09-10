@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Restaurant Reservation List</title>
+    <link rel="stylesheet" href="../css/adminStyle.css">
+    <style>
+        
+       
+        .results-container h2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #000000;
+            padding: 15px
+        
+            
+        }
+        .ReHeader{
+            border: 2px solid #000000;
+            padding-left: 400px;
+            padding-right: 400px;
+            padding-top:15px;
+            padding-bottom: 15px;
+            
+        }
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ගමේ කඩේ</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="AdHome.html">Home</a></li>
+            <li><a href="AdRes.html">Reservations</a></li>
+            <li><a href="AdEmpMan.html">EmpManagement</a></li>
+            <li><a href="AdCusManage.html">CusManagement</a></li>
+            <li><a href="AdQueries.html">Queries</a></li>
+        </ul>
+    </nav>
+<br>
+    <h1 class="ReHeader">Search Reservations</h1>
+
+    <div class="search-container">
+        <label for="customer-id">Customer ID:</label>
+        <input type="text" id="customer-id" placeholder="Enter customer ID">
+
+        <label for="customer-name">Customer Name:</label>
+        <input type="text" id="customer-name" placeholder="Enter customer name">
+
+        <label for="people-count">People Count:</label>
+        <input type="number" id="people-count" min="1" max="20" placeholder="Enter people count">
+
+        <button onclick="searchReservations()">Search</button>
+    </div>
+
+    <div class="results-container" id="results-container">
+        <h2>Reservation List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Customer Name</th>
+                    <th>People Count</th>
+                    <th>Service</th>
+                    <th>Reservation Day</th>
+                </tr>
+            </thead>
+            <tbody id="results-table">
+                <!-- Reservation list will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Mock data for reservations
+        const reservations = [
+            { id: '001', name: 'John Doe', people: 4, service: 'Dinner', day: 'Monday' },
+            { id: '002', name: 'Jane Smith', people: 2, service: 'Lunch', day: 'Tuesday' },
+            { id: '003', name: 'Alice Johnson', people: 6, service: 'Brunch', day: 'Wednesday' },
+            { id: '004', name: 'Michael Brown', people: 3, service: 'Dinner', day: 'Thursday' },
+            { id: '005', name: 'Emily Davis', people: 5, service: 'Breakfast', day: 'Friday' },
+        ];
+
+        function searchReservations() {
+            const customerId = document.getElementById('customer-id').value.toLowerCase();
+            const customerName = document.getElementById('customer-name').value.toLowerCase();
+            const peopleCount = document.getElementById('people-count').value;
+            const resultsTable = document.getElementById('results-table');
+
+            // Clear previous results
+            resultsTable.innerHTML = '';
+
+            // Filter the reservations based on search criteria
+            const filteredReservations = reservations.filter(reservation => {
+                const idMatch = reservation.id.toLowerCase().includes(customerId);
+                const nameMatch = reservation.name.toLowerCase().includes(customerName);
+                const peopleMatch = !peopleCount || reservation.people == peopleCount;
+
+                return idMatch && nameMatch && peopleMatch;
+            });
+
+            // Display the filtered reservations in the table
+            if (filteredReservations.length > 0) {
+                filteredReservations.forEach(reservation => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${reservation.id}</td>
+                        <td>${reservation.name}</td>
+                        <td>${reservation.people}</td>
+                        <td>${reservation.service}</td>
+                        <td>${reservation.day}</td>
+                    `;
+                    resultsTable.appendChild(row);
+                });
+            } else {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="5" style="text-align: center;">No reservations found matching your criteria.</td>
+                `;
+                resultsTable.appendChild(row);
+            }
+        }
+    </script>
+
+</body>
+</html>

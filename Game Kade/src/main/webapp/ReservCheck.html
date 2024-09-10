@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Reservation</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+           
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            position: relative;
+            margin-top: -100px;
+            color: #e2d3d3;
+        }
+
+        .search-container {
+            background:transparent;
+            backdrop-filter: blur(20px);
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container label {
+            font-weight: bold;
+            color: #e2d1d1;
+        }
+
+        .search-container input,
+        .search-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .search-container button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .search-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .results-container {
+            background:transparent;
+            backdrop-filter: blur(20px);
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, .5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .results-container li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            color: #fffefe;
+        }
+
+        .results-container li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <header> 
+    <img src="images/gamekadelogo.png" class="logoImage">
+      <nav class="navigation">
+        <a href="login.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="services.html">Services</a>
+        <a href="reservation.html">Reservations</a>
+        <a href="contact.html">Contact</a>
+        <a href="profile.html">profile <ion-icon name="person-circle" class="personI"></ion-icon></a>
+        
+      
+      </nav>
+  </header>
+
+    <h1>Search for Available Reservation Days</h1>
+
+    <div class="search-container">
+        <label for="people-count">Number of People:</label>
+        <input type="number" id="people-count" min="1" max="20" placeholder="Enter number of people">
+
+        <label for="service">Select Service:</label>
+        <select id="service">
+            <option value="dinner">Dinner</option>
+            <option value="lunch">Lunch</option>
+            <option value="brunch">Brunch</option>
+            <option value="breakfast">Breakfast</option>
+        </select>
+
+        <button onclick="searchReservations()">Search</button>
+    </div>
+
+    <div class="results-container" id="results-container">
+        <h2>Available Days</h2>
+        <ul id="results-list">
+            <!-- Available days will be listed here -->
+        </ul>
+    </div>
+
+    <script>
+        // Mock data for available reservations
+        const reservations = [
+            { day: 'Monday', people: 10, service: 'dinner' },
+            { day: 'Tuesday', people: 5, service: 'lunch' },
+            { day: 'Wednesday', people: 15, service: 'brunch' },
+            { day: 'Thursday', people: 8, service: 'dinner' },
+            { day: 'Friday', people: 12, service: 'breakfast' },
+            { day: 'Saturday', people: 20, service: 'dinner' },
+            { day: 'Sunday', people: 6, service: 'lunch' },
+        ];
+
+        function searchReservations() {
+            const peopleCount = parseInt(document.getElementById('people-count').value);
+            const service = document.getElementById('service').value;
+            const resultsList = document.getElementById('results-list');
+
+            // Clear previous results
+            resultsList.innerHTML = '';
+
+            // Filter the available reservations based on input
+            const availableDays = reservations.filter(reservation => {
+                return reservation.people >= peopleCount && reservation.service === service;
+            });
+
+            // Display the filtered days
+            if (availableDays.length > 0) {
+                availableDays.forEach(reservation => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${reservation.day} (${reservation.service.charAt(0).toUpperCase() + reservation.service.slice(1)})`;
+                    resultsList.appendChild(listItem);
+                });
+            } else {
+                const listItem = document.createElement('li');
+                listItem.textContent = 'No available days match your criteria.';
+                resultsList.appendChild(listItem);
+            }
+        }
+    </script>
+
+</body>
+</html>

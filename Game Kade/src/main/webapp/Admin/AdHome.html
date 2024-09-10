@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Restaurant Reservation List</title>
+    <link rel="stylesheet" href="../css/adminStyle.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  
+    
+    <style>
+
+        header h1{
+            font-size: 2em;
+            font-weight: 600;
+        }
+        .container {
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            
+        }
+
+        
+        .header-text {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            border: 2px solid;
+            padding: 10px;
+        }
+        .adHead{
+            margin: 20px;
+            border: 2px solid;
+            padding: 10px;
+            padding-left: 500px;
+            padding-right: 500px;
+        }
+        .table-responsive {
+        margin-top: 30px;
+        }
+        .btn-accept {
+        background-color: #28a745;
+        color: white;
+        }
+        .btn-decline {
+        background-color: #dc3545;
+        color: white;
+        }
+        .status-pending {
+        background-color: #ffc107;
+        color: black;
+        }
+        .status-approved {
+        background-color: #28a745;
+        color: white;
+        }
+        .status-declined {
+        background-color: #dc3545;
+        color: white;
+        }  
+        
+
+        .dashboard-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 80%;
+      max-width: 1200px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background-color: white;
+      width: 150px;
+      height: 150px;
+      margin: 15px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #f5f2f2;
+    }
+
+    .card p {
+      font-size: 28px;
+      font-weight: bold;
+      color: #f0cece;
+    }
+
+    .employee-card {
+      background: linear-gradient(135deg, #311236, #0d47a1);
+      color: white;
+    }
+
+    .food-card {
+      background: linear-gradient(135deg, #311236, #2e7d32);
+      color: white;
+    }
+
+    .booked-card {
+      background: linear-gradient(135deg, #311236, #f57f17);
+      color: white;
+    }
+
+    .available-card {
+      background: linear-gradient(135deg, #311236, #b71c1c);
+      color: white;
+    }
+
+    .customer-card {
+      background: linear-gradient(135deg, #311236, #4a148c);
+      color: white;
+    }
+
+
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      background-color: #eee;
+      width: 100%;
+    }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ගමේ කඩේ</h1>
+    </header>
+
+    <nav>
+        <ul>
+          <li><a href="AdHome.html">Home</a></li>
+          <li><a href="AdRes.html">Reservations</a></li>
+          <li><a href="AdEmpMan.html">EmpManagement</a></li>
+          <li><a href="AdCusManage.html">CusManagement</a></li>
+          <li><a href="AdQueries.html">Queries</a></li>
+            
+        </ul>
+    </nav>
+<br>
+
+
+<h2 class="adHead">Admin Dashboard</h2>
+
+  <div class="dashboard-container">
+    <!-- Employee Count -->
+    <div class="card employee-card">
+      <h3>Employees</h3>
+      <p id="employeeCount">50</p>
+    </div>
+
+    <!-- Food Count -->
+    <div class="card food-card">
+      <h3>Food Items</h3>
+      <p id="foodCount">120</p>
+    </div>
+
+    <!-- Booked Reservation Count -->
+    <div class="card booked-card">
+      <h3>Booked Reservations</h3>
+      <p id="bookedReservationCount">35</p>
+    </div>
+
+    <!-- Available Reservation Count -->
+    <div class="card available-card">
+      <h3>Available Reservations</h3>
+      <p id="availableReservationCount">15</p>
+    </div>
+
+    <!-- Customer Count -->
+    <div class="card customer-card">
+      <h3>Customers</h3>
+      <p id="customerCount">200</p>
+    </div>
+  </div>
+
+
+
+<div class="container">
+    <h1 class="header-text text-center">Employee Leave Request List</h1>
+    
+    <!-- Leave Request Table -->
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead class="table-dark">
+          <tr id="row-1">
+            <th>#</th>
+            <th>Employee Name</th>
+            <th>Email</th>
+            <th>Leave Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="leave-requests">
+          <!-- Sample Rows -->
+          <tr data-id="1">
+            <th scope="row">1</th>
+            <td>John Doe</td>
+            <td>john.doe@example.com</td>
+            <td>Vacation</td>
+            <td>2024-09-10</td>
+            <td>2024-09-15</td>
+            <td><span class="badge status-pending">Pending</span></td>
+            <td>
+              <button class="btn btn-accept" onclick="handleRequest(1, 'accept')">Accept</button>
+              <button class="btn btn-decline" onclick="handleRequest(1, 'decline')">Decline</button>
+            </td>
+          </tr>
+          <tr data-id="2">
+            <th scope="row">2</th>
+            <td>Jane Smith</td>
+            <td>jane.smith@example.com</td>
+            <td>Sick Leave</td>
+            <td>2024-09-12</td>
+            <td>2024-09-14</td>
+            <td><span class="badge status-pending">Pending</span></td>
+            <td>
+              <button class="btn btn-accept" onclick="handleRequest(2, 'accept')">Accept</button>
+              <button class="btn btn-decline" onclick="handleRequest(2, 'decline')">Decline</button>
+            </td>
+          </tr>
+          <tr data-id="3">
+            <th scope="row">3</th>
+            <td>Michael Johnson</td>
+            <td>michael.johnson@example.com</td>
+            <td>Maternity Leave</td>
+            <td>2024-09-05</td>
+            <td>2024-09-20</td>
+            <td><span class="badge status-pending">Pending</span></td>
+            <td>
+              <button class="btn btn-accept" onclick="handleRequest(3, 'accept')">Accept</button>
+              <button class="btn btn-decline" onclick="handleRequest(3, 'decline')">Decline</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <footer>
+    &copy; 2024 Admin Dashboard. All rights reserved.
+  </footer>
+  
+  <!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  function handleRequest(id, action) {
+    // Get the row and email details
+    const row = document.querySelector(`tr[data-id="${id}"]`);
+    const email = row.cells[2].innerText;
+    const statusBadge = row.cells[6].querySelector('.badge');
+
+    // Update status badge
+    if (action === 'accept') {
+      statusBadge.innerText = 'Approved';
+      statusBadge.classList.remove('status-pending');
+      statusBadge.classList.add('status-approved');
+    } else if (action === 'decline') {
+      statusBadge.innerText = 'Declined';
+      statusBadge.classList.remove('status-pending');
+      statusBadge.classList.add('status-declined');
+    }
+
+    // Simulate sending an email
+    sendEmail(email, action);
+  }
+
+  function sendEmail(email, action) {
+    const actionText = action === 'accept' ? 'approved' : 'declined';
+    const subject = `Your Leave Request has been ${actionText}`;
+    const body = `Hello, your leave request has been ${actionText}. Please contact HR for further details.`;
+
+    // Simulated email output in console (replace this with actual backend email logic)
+    console.log(`Email sent to ${email}:\nSubject: ${subject}\nBody: ${body}`);
+
+    // You would replace the above with actual backend email sending, e.g., using SMTP or an API like SendGrid
+    alert(`An email has been sent to ${email} about the leave request being ${actionText}.`);
+  }
+
+
+</script>
+
+
+</body>
+</html>

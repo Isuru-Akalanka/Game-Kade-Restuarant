@@ -1,0 +1,619 @@
+@charset "ISO-8859-1";
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	
+}
+
+body{
+	
+	display: flex;
+	justify-content: center;
+	align-items:center;
+	min-height: 100vh;
+	background: url('../images/menu.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index:99;
+}
+
+.logoImage{
+	
+	height: 70px; /* Adjust the height to fit the logo in the nav bar */
+    width: auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.navigation a{
+	position: relative;
+	font-size: 1.1em;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 500;
+	margin-left: 40px;
+}
+
+.navigation a::after{
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -6px;
+	width: 100%;
+	height: 3px;
+	background: #fff;
+	border-radius: 5px;
+	transform: scaleX(0);
+	transition: transform .5s;
+}
+
+.navigation a:hover::after{
+	transform: scaleX(1);
+}
+
+
+.navigation .btnLogin-popup{
+	width: 130px;
+	height: 50px;
+	background: transparent;
+	border: 2px solid #fff;
+	outline: none;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 1.1em;
+	color: #fff;
+	font-weight: 500;
+	margin-left: 40px;
+	transition: .5s;
+	
+}
+
+
+.navigation .btnLogin-popup:hover{
+	background: #fff;
+	color: #162938;
+}
+
+.welcome-msg{
+	cursor: pointer;
+	font-size: 3em;
+	font-weight: 1000;
+	color: antiquewhite;
+	position: relative;
+	width: 500px;
+	height: 200px;
+	left: -200px;
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, .5);
+	border-radius: 20px;
+	padding-bottom: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.welcome-msg:hover{
+	color: #33f088;
+}
+
+.wrapper{
+	position: relative;
+	width: 400px;
+	height: 440px;
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, .5);
+	border-radius: 20px;
+	backdrop-filter: blur(20px);
+	box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	transform: scale(0);
+	transition: transform .5s ease,height .2s ease;
+
+}
+
+.wrapper.active-popup{
+	transform: scale(1);
+
+}
+
+.wrapper.active{
+	height: 520px;
+}
+.wrapper .form-box{
+	width: 100%;
+	padding: 40px;
+}
+
+.wrapper .form-box.login{
+	transition: transform .18s ease;
+	transform: translateX(0);
+}
+
+.wrapper.active .form-box.login{
+	transition:none;
+	transform: translateX(-400px);
+}
+
+.wrapper .form-box.register{
+	position:absolute;
+	transition: none;
+	transform: translateX(400px);
+
+}
+
+.wrapper.active .form-box.register{
+	transition: transform .18s ease;
+	transform: translateX(0);
+}
+
+
+.wrapper .icon-close{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 45px;
+	height: 45px;
+	background: #162938;
+	font-size: 2em;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom-left-radius: 20px;
+	cursor: pointer;
+	z-index: 1;
+
+}
+
+header .navigation .personI{
+	position: absolute;
+	top: -4px;
+	right: -40px;
+	width: 30px;
+	height: 30px;
+	background: #162938;
+	font-size: 1em;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+	cursor: pointer;
+	z-index: 1;
+}
+.form-box h2{
+	font-size: 2em;
+	color: #acafb1;
+	text-align: center;
+}
+
+.input-box{
+	position: relative;
+	width: 100%;
+	height: 50px;
+	border-bottom: 2px solid #424141;
+	margin: 30px 0;
+}
+
+.input-box label{
+	position: absolute;
+	top: 50%;
+	left: 5px;
+	transform: translateY(-50%);
+	font-size: 1em;
+	color: #8d9aa3;
+	font-weight: 500;
+	pointer-events: none;
+	transition: .3s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+	top: -5px;
+}
+
+.input-box input{
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border: none;
+	outline: none;
+	font-size: 1em;
+	color:#cfe0ec;
+	font-weight: 600;
+	padding: 0 35px 0 5px;
+
+}
+
+.input-box .icon{
+	position: absolute;
+	right: 8px;
+	font-size: 1.2em;
+	color: #a1b2c0;
+	line-height: 57px;
+}
+
+.remember-forgot{
+	font-size: .9em;
+	color: #f7f7f7;
+	font-weight: 500;
+	margin: -10px 0 15px;
+	display: flex;
+	justify-content: space-between;
+}
+.remember-forgot label input{
+	accent-color: #89929b;
+	margin-right: 3px;
+}
+
+.remember-forgot a{
+	color:#182025;
+	text-decoration: none;
+}
+
+.remember-forgot a:hover{
+	text-decoration: underline;
+}
+
+.btn{
+	width: 100%;
+	height: 45px;
+	background: #162938;
+	border: none;
+	outline: none;
+	border-radius: 6px;
+	cursor: pointer;
+	color: #fff;
+	font-weight: 500;
+
+}
+
+.login-register{
+	font-size: .9em;
+	color: #162938;
+	text-align: center;
+	font-weight: 500;
+	margin: 25px 0 10px;
+}
+
+.login-register p a{
+	color:#162938;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.login-register p a:hover{
+	text-decoration: underline;
+}
+
+/*
+
+Services page
+
+ */
+
+ .services-container {
+    text-align: center;
+}
+
+.serviceImage{
+
+}
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.service-box {
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, .5);
+	border-radius: 20px;
+	backdrop-filter: blur(20px);
+    padding: 45px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.service-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.service-box h2 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.service-box:hover {
+    transform: translateY(-5px);
+}
+
+@media (min-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+/*
+Contact us
+*/
+
+
+
+.contact-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.contact-info {
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+.contact-info h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #e7d5d5;
+}
+
+.contact-info p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.contact-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-info ul li {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.contact-form {
+    background: transparent;
+	backdrop-filter: blur(20px);
+    padding: 30px;
+    border-radius: 8px;
+	border: 2px solid rgba(255, 255, 255, .5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+.contact-form h2 {
+    margin-bottom: 20px;
+	margin-left: 150px;
+    font-size: 24px;
+    color: #f8f1f1;
+	justify-content: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: #666;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.submit-btn {
+    display: inline-block;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-info, .contact-form {
+        max-width: 100%;
+    }
+}
+
+
+/*
+ Cus profile
+*/
+
+.profile-container {
+	color: #fff;
+	background: transparent;
+	backdrop-filter: blur(20px);
+	border-radius: 8px;
+	border: 2px solid rgba(255, 255, 255, .5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+}
+
+.profile-header {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.user-name {
+    font-size: 24px;
+    color: #faf4f4;
+    margin: 0;
+}
+
+.user-role {
+    font-size: 18px;
+    color: #d6bebe;
+    margin-top: 5px;
+}
+
+.profile-details {
+    padding: 20px;
+}
+
+.detail-section {
+    margin-bottom: 20px;
+}
+
+.detail-section h2 {
+    font-size: 20px;
+    color: #e7d9d9;
+    margin-bottom: 10px;
+}
+
+.detail-section p {
+    font-size: 16px;
+    color: #fffcfc;
+    line-height: 1.6;
+}
+
+.reservations-section {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.reservations-section h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.reservations-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.reservations-table th, .reservations-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.edit-btn, .delete-btn, .add-reservation-btn {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover, .delete-btn:hover, .add-reservation-btn:hover {
+    background-color: #0056b3;
+}
+
+.add-reservation-btn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .profile-container {
+        padding: 15px;
+    }
+
+    .profile-header {
+        padding: 15px;
+    }
+
+    .profile-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .user-name {
+        font-size: 20px;
+    }
+
+    .user-role {
+        font-size: 16px;
+    }
+
+    .profile-details, .reservations-section {
+        padding: 15px;
+    }
+}
