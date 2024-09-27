@@ -1,8 +1,10 @@
 package service;
 
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import model.EmpReq;
 import model.User;
 import util.CommanConstants;
 import util.DBConnection;
@@ -46,4 +48,24 @@ public class UserServiceImpl implements IUserService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String register(String username, String password, String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String forgotPassword(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String updatePassword(String username, String password, String newPassword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

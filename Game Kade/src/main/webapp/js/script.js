@@ -39,8 +39,56 @@ function showDiv() {
 
 
 
-
 /*
+
+
+
+  <div class="menu-container">
+      <div class="menu-item">
+          <img src="images/pizza.jpg" alt="Pizza">
+          <h3>Pizza</h3>
+          <p>Delicious cheese pizza with fresh ingredients.</p>
+          <button onclick="addToCart('Pizza', 2000)">Starting from - Rs. 2000</button>
+      </div>
+      <div class="menu-item">
+          <img src="images/KootuCurry.jpg" alt="Burger">
+          <h3>Rice</h3>
+          <p>Sri lankan type Delicious Spicy Rice and Curry.</p>
+          <button onclick="addToCart('Kottu', 2000)">Starting from - Rs. 2000</button>
+      </div>
+      <div class="menu-item">
+          <img src="images/pexels-chanwalrus-958545.jpg" alt="Pasta">
+          <h3>Parata</h3>
+          <p>Sri Lankan Parata roti with chicken curry.</p>
+          <button onclick="addToCart('Parata', 2000)">Starting from - Rs. 2000</button>
+      </div>
+      <div class="menu-item">
+          <img src="images/Medu-Vada-H3.jpg" alt="Salad">
+          <h3>Wade</h3>
+          <p>Spicy and delicious Uludu Wade with chilli paste</p>
+          <button onclick="addToCart('Wade', 2000)">Starting from - Rs. 2000</button>
+      </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 reservation table
 

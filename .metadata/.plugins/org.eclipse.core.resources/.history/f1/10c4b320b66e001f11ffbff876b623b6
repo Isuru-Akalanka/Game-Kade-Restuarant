@@ -1,6 +1,0 @@
-package service;
-
-import java.util.logging.logger;
-public interface IUserService {
-
-}

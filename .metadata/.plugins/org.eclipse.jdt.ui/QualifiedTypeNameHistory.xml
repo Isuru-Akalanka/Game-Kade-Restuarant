@@ -6,9 +6,25 @@
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.lang.System.Logger"/>
-    <fullyQualifiedTypeName name="java.lang.System.Logger.Level"/>
     <fullyQualifiedTypeName name="java.util.logging.Logger"/>
     <fullyQualifiedTypeName name="util.DBConnection"/>
-    <fullyQualifiedTypeName name="util.CommanConstants"/>
     <fullyQualifiedTypeName name="model.User"/>
+    <fullyQualifiedTypeName name="model.EmpReq"/>
+    <fullyQualifiedTypeName name="util.CommanConstants"/>
+    <fullyQualifiedTypeName name="service.IUserService"/>
+    <fullyQualifiedTypeName name="service.UserServiceImpl"/>
+    <fullyQualifiedTypeName name="model.MenuItems"/>
+    <fullyQualifiedTypeName name="service.IMenuService"/>
+    <fullyQualifiedTypeName name="service.MenuServiceImpl"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="java.lang.System.Logger.Level"/>
+    <fullyQualifiedTypeName name="java.util.Collection"/>
+    <fullyQualifiedTypeName name="model.Reservations"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="service.IReservationsService"/>
+    <fullyQualifiedTypeName name="service.ReservationServiceImpl"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="com.google.gson.Gson"/>
+    <fullyQualifiedTypeName name="service.IAdminService"/>
+    <fullyQualifiedTypeName name="service.AdminServiceImpl"/>
 </qualifiedTypeNameHistroy>

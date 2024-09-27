@@ -31,13 +31,7 @@
             border: 2px solid;
             padding: 10px;
         }
-        .adHead{
-            margin: 20px;
-            border: 2px solid;
-            padding: 10px;
-            padding-left: 500px;
-            padding-right: 500px;
-        }
+       
         .table-responsive {
         margin-top: 30px;
         }
@@ -167,13 +161,13 @@
     <!-- Employee Count -->
     <div class="card employee-card">
       <h3>Employees</h3>
-      <p id="employeeCount">50</p>
+      <p id="employeeCount"></p>
     </div>
 
     <!-- Food Count -->
     <div class="card food-card">
       <h3>Food Items</h3>
-      <p id="foodCount">120</p>
+      <p id="foodCount"></p>
     </div>
 
     <!-- Booked Reservation Count -->
@@ -204,58 +198,17 @@
     <div class="table-responsive">
       <table class="table table-hover table-bordered">
         <thead class="table-dark">
-          <tr id="row-1">
-            <th>#</th>
-            <th>Employee Name</th>
-            <th>Email</th>
+          <tr>
+            <th>Request ID</th>
+            <th>Employee Email</th>
             <th>Leave Type</th>
-            <th>Start Date</th>
-            <th>End Date</th>
+            <th> Date</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody id="leave-requests">
-          <!-- Sample Rows -->
-          <tr data-id="1">
-            <th scope="row">1</th>
-            <td>John Doe</td>
-            <td>john.doe@example.com</td>
-            <td>Vacation</td>
-            <td>2024-09-10</td>
-            <td>2024-09-15</td>
-            <td><span class="badge status-pending">Pending</span></td>
-            <td>
-              <button class="btn btn-accept" onclick="handleRequest(1, 'accept')">Accept</button>
-              <button class="btn btn-decline" onclick="handleRequest(1, 'decline')">Decline</button>
-            </td>
-          </tr>
-          <tr data-id="2">
-            <th scope="row">2</th>
-            <td>Jane Smith</td>
-            <td>jane.smith@example.com</td>
-            <td>Sick Leave</td>
-            <td>2024-09-12</td>
-            <td>2024-09-14</td>
-            <td><span class="badge status-pending">Pending</span></td>
-            <td>
-              <button class="btn btn-accept" onclick="handleRequest(2, 'accept')">Accept</button>
-              <button class="btn btn-decline" onclick="handleRequest(2, 'decline')">Decline</button>
-            </td>
-          </tr>
-          <tr data-id="3">
-            <th scope="row">3</th>
-            <td>Michael Johnson</td>
-            <td>michael.johnson@example.com</td>
-            <td>Maternity Leave</td>
-            <td>2024-09-05</td>
-            <td>2024-09-20</td>
-            <td><span class="badge status-pending">Pending</span></td>
-            <td>
-              <button class="btn btn-accept" onclick="handleRequest(3, 'accept')">Accept</button>
-              <button class="btn btn-decline" onclick="handleRequest(3, 'decline')">Decline</button>
-            </td>
-          </tr>
+        <tbody id="empReqListTable">
+
         </tbody>
       </table>
     </div>
@@ -263,46 +216,19 @@
   <footer>
     &copy; 2024 Admin Dashboard. All rights reserved.
   </footer>
+   <script src = "../js/adminHandle.js"></script>
+   
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  
+  <script>
+		$(document).ready(function() {
+			callGetAllEmpReqServlet();
+	
+		});	
+	</script>
   
   <!-- Bootstrap JS and dependencies -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-  function handleRequest(id, action) {
-    // Get the row and email details
-    const row = document.querySelector(`tr[data-id="${id}"]`);
-    const email = row.cells[2].innerText;
-    const statusBadge = row.cells[6].querySelector('.badge');
-
-    // Update status badge
-    if (action === 'accept') {
-      statusBadge.innerText = 'Approved';
-      statusBadge.classList.remove('status-pending');
-      statusBadge.classList.add('status-approved');
-    } else if (action === 'decline') {
-      statusBadge.innerText = 'Declined';
-      statusBadge.classList.remove('status-pending');
-      statusBadge.classList.add('status-declined');
-    }
-
-    // Simulate sending an email
-    sendEmail(email, action);
-  }
-
-  function sendEmail(email, action) {
-    const actionText = action === 'accept' ? 'approved' : 'declined';
-    const subject = `Your Leave Request has been ${actionText}`;
-    const body = `Hello, your leave request has been ${actionText}. Please contact HR for further details.`;
-
-    // Simulated email output in console (replace this with actual backend email logic)
-    console.log(`Email sent to ${email}:\nSubject: ${subject}\nBody: ${body}`);
-
-    // You would replace the above with actual backend email sending, e.g., using SMTP or an API like SendGrid
-    alert(`An email has been sent to ${email} about the leave request being ${actionText}.`);
-  }
-
-
-</script>
 
 
 </body>

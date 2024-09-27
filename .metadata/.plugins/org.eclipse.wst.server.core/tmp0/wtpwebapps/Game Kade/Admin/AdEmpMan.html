@@ -123,33 +123,16 @@
     <table class="table table-bordered table-hover text-center">
         <thead class="table-dark">
             <tr>
-                <th>#</th>
+                <th>Emp Id</th>
                 <th>Name</th>
+                <th>Email</th>
                 <th>Position</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="adminMangEmpTable">
             <!-- Sample Employee Row 1 -->
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>Software Engineer</td>
-                <td>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewDetailsModal" onclick="viewEmployeeDetails('John Doe', 'Software Engineer')">View Details</button>
-                    <button class="btn btn-danger btn-sm" onclick="removeEmployee(this)">Remove</button>
-                </td>
-            </tr>
-            <!-- Sample Employee Row 2 -->
-            <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td>Product Manager</td>
-                <td>
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewDetailsModal" onclick="viewEmployeeDetails('Jane Smith', 'Product Manager')">View Details</button>
-                    <button class="btn btn-danger btn-sm" onclick="removeEmployee(this)">Remove</button>
-                </td>
-            </tr>
+           
         </tbody>
     </table>
 
@@ -213,16 +196,7 @@
 
  <script>
      // Function to display employee details in the modal
-     function viewEmployeeDetails(name, position) {
-         document.getElementById('employeeName').innerText = name;
-         document.getElementById('employeePosition').innerText = position;
-     }
-
-     // Function to remove an employee row from the table
-     function removeEmployee(button) {
-         let row = button.closest('tr');
-         row.remove();
-     }
+     
 
      // Handle the Add New Employee form submission
      document.getElementById('addEmployeeForm').addEventListener('submit', function (e) {
@@ -245,7 +219,15 @@
          document.querySelector('#addEmployeeModal .btn-close').click();
      });
  </script>
-
+ <script src = "../js/adminHandle.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  
+  <script>
+		$(document).ready(function() {
+			callGetAllEmpListServlet();
+	
+		});	
+	</script>
 
 </body>
 </html>

@@ -154,34 +154,9 @@
   </header>
 
   <h1>Week Specials Deals</h1>
-
-  <div class="menu-container">
-      <div class="menu-item">
-          <img src="images/pizza.jpg" alt="Pizza">
-          <h3>Pizza</h3>
-          <p>Delicious cheese pizza with fresh ingredients.</p>
-          <button onclick="addToCart('Pizza', 2000)">Starting from - Rs. 2000</button>
-      </div>
-      <div class="menu-item">
-          <img src="images/KootuCurry.jpg" alt="Burger">
-          <h3>Rice</h3>
-          <p>Sri lankan type Delicious Spicy Rice and Curry.</p>
-          <button onclick="addToCart('Kottu', 2000)">Starting from - Rs. 2000</button>
-      </div>
-      <div class="menu-item">
-          <img src="images/pexels-chanwalrus-958545.jpg" alt="Pasta">
-          <h3>Parata</h3>
-          <p>Sri Lankan Parata roti with chicken curry.</p>
-          <button onclick="addToCart('Parata', 2000)">Starting from - Rs. 2000</button>
-      </div>
-      <div class="menu-item">
-          <img src="images/Medu-Vada-H3.jpg" alt="Salad">
-          <h3>Wade</h3>
-          <p>Spicy and delicious Uludu Wade with chilli paste</p>
-          <button onclick="addToCart('Wade', 2000)">Starting from - Rs. 2000</button>
-      </div>
-  </div>
-
+	<div class="menu-container" id="showMenuItems">
+	
+	</div>
   <div id="cart">
       <h2>Your Cart</h2>
       <ul id="cart-items"></ul>
@@ -240,10 +215,18 @@
       }
   </script>
  
+   <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  
+ <script>
+		$(document).ready(function() {
+			callGetAllMenuServlet();
+	
+		});	
+	</script>
 
 
-
-
+<script src="js/customerHandle.js"></script>
 <script src="js/script.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

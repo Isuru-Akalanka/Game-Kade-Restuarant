@@ -81,7 +81,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Reservation ID</th>
+                    <th>Res ID</th>
                     <th>Name</th>
                     <th>Date</th>
                     <th>Time</th>
@@ -89,106 +89,33 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="reservationTableBody">
+            <tbody id="PendingreseTableBody">
                 <!-- Table rows will be dynamically populated here -->
             </tbody>
         </table>
-        <div class="container hiddenContainer">
-        <div id="reservationDetails" class="reservation-details">
-            <h4>Reservation Details</h4>
-            <p>Select a reservation from the table to view the full details.</p>
-        </div>
-        <div id="actionButtons" class="hidden">
-            <button id="approveBtn" class="btn btn-approve">Approve</button>
-            <button id="denyBtn" class="btn btn-deny">Deny</button>
-        </div>
-    </div>
+         <div class="container hiddenContainer">
+	        <div id="reservationDetails" class="reservation-details">
+	            <h4>Reservation Details</h4>
+	            <p>Select a reservation from the table to view the full details.</p>
+	        </div>
+        	<div id="actionButtons" class="hidden">
+	            
+        	</div>
+    	</div>
+      
     </div>
 
     
-<script>
-    // Mock data for reservation requests
-    const reservations = [
-            { id: 1, name: 'John Doe', email: 'john@example.com', phone: '1234567890', date: '2024-09-10', time: '7:00 PM', guests: 2, message: 'Table by the window, please.' },
-            { id: 2, name: 'Jane Smith', email: 'jane@example.com', phone: '0987654321', date: '2024-09-11', time: '8:00 PM', guests: 4, message: 'Celebrating a birthday.' },
-            { id: 3, name: 'Michael Johnson', email: 'michael@example.com', phone: '9876543210', date: '2024-09-12', time: '6:00 PM', guests: 3, message: 'Prefer a quieter area.' }
-        ];
-
-        let selectedReservation = null;
-
-        // Populate the table with reservation requests
-        function populateReservationTable() {
-            const tableBody = document.getElementById('reservationTableBody');
-            tableBody.innerHTML = ''; // Clear previous content
-
-            reservations.forEach(reservation => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${reservation.id}</td>
-                    <td>${reservation.name}</td>
-                    <td>${reservation.date}</td>
-                    <td>${reservation.time}</td>
-                    <td>${reservation.guests}</td>
-                    <td><button class="btn btn-info btn-sm" onclick="viewReservationDetails(${reservation.id})">View</button></td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        // View reservation details
-        function viewReservationDetails(reservationId) {
-            selectedReservation = reservations.find(reservation => reservation.id === reservationId);
-            const reservationDetails = document.getElementById('reservationDetails');
-            reservationDetails.innerHTML = `
-                <p><strong>ID:</strong> ${selectedReservation.id}</p>
-                <p><strong>Name:</strong> ${selectedReservation.name}</p>
-                <p><strong>Email:</strong> ${selectedReservation.email}</p>
-                <p><strong>Phone:</strong> ${selectedReservation.phone}</p>
-                <p><strong>Date:</strong> ${selectedReservation.date}</p>
-                <p><strong>Time:</strong> ${selectedReservation.time}</p>
-                <p><strong>Guests:</strong> ${selectedReservation.guests}</p>
-                <p><strong>Message:</strong> ${selectedReservation.message}</p>
-            `;
-
-            // Show action buttons
-            document.getElementById('actionButtons').classList.remove('hidden');
-        }
-
-        // Approve the reservation
-        function approveReservation() {
-            if (selectedReservation) {
-                alert(`Reservation for ${selectedReservation.name} has been approved.`);
-                removeReservation(selectedReservation.id);
-            }
-        }
-
-        // Deny the reservation
-        function denyReservation() {
-            if (selectedReservation) {
-                alert(`Reservation for ${selectedReservation.name} has been denied.`);
-                removeReservation(selectedReservation.id);
-            }
-        }
-
-        // Remove a reservation from the list
-        function removeReservation(id) {
-            const index = reservations.findIndex(reservation => reservation.id === id);
-            if (index !== -1) {
-                reservations.splice(index, 1); // Remove from the array
-                selectedReservation = null;
-                document.getElementById('reservationDetails').innerHTML = '<p>Select a reservation from the table to view the full details.</p>';
-                document.getElementById('actionButtons').classList.add('hidden');
-                populateReservationTable(); // Update the table
-            }
-        }
-
-        // Event listeners for buttons
-        document.getElementById('approveBtn').onclick = approveReservation;
-        document.getElementById('denyBtn').onclick = denyReservation;
-
-        // Populate the reservation table on page load
-        populateReservationTable();
-</script>
+<script src="../js/adminHandle.js"></script>
+       <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  
+ <script>
+		$(document).ready(function() {
+			callGetAllPendingReserServlet();
+	
+		});	
+	</script>
 
 </body>
 </html>
